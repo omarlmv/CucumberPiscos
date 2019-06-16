@@ -1,0 +1,37 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v4="http://interbank.com.pe/srv/generic/messageFormat/v4.0/" xmlns:v1="http://interbank.com.pe/service/MPO/AtencionCliente/tarjeta.consultarRiesgo/v1.0/">
+   <soapenv:Header>
+      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+         <wsse:UsernameToken wsu:Id="UsernameToken-03F8B861DA06CEB7F114392277825531">
+            <wsse:Username>uBseBimAOpe</wsse:Username>
+            <wsse:Password>ubsaope16</wsse:Password>
+         </wsse:UsernameToken>
+      </wsse:Security>
+      <v4:HeaderRequest>
+         <request>
+            <serviceId>SAT</serviceId>
+            <consumerId>IVR</consumerId>
+            <moduleId>OPTIMUS</moduleId>
+            <channelCode>03</channelCode>
+            <messageId>1234567890</messageId>
+            <timestamp>2016-07-27T17:56:35.657422</timestamp>
+            <countryCode>PE</countryCode>
+            <groupMember>08</groupMember>
+            <referenceNumber>12345678</referenceNumber>
+         </request>
+         <identity>
+            <netId>BT</netId>
+            <userId>IVRB0000</userId>
+            <supervisorId></supervisorId>
+            <deviceId></deviceId>
+            <serverId></serverId>
+            <branchCode>896</branchCode>
+         </identity>
+      </v4:HeaderRequest>
+   </soapenv:Header>
+   <soapenv:Body>
+      <v1:ConsultarRiesgo>
+         <numeroTarjeta>{{numeroTarjeta}}</numeroTarjeta>
+   
+      </v1:ConsultarRiesgo>
+   </soapenv:Body>
+</soapenv:Envelope>

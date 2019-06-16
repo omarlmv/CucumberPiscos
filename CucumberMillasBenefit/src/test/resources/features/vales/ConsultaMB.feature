@@ -1,0 +1,91 @@
+Feature: Metodo Consulta Millas Benefit
+ 	Como Cliente
+    Quiero consultar por API las millas que dispone
+    Para poder seguir con el flujo de canje
+	
+ 	Background:
+    Given cliente quiere consultar sus millas con su tarjeta
+    And la tarjeta debe participar en benefit
+	And la tarjeta acomula millas benefit
+
+
+
+  Scenario Outline: Como cliente, quiero validar la consulta de millas con tarjetas de credito activa que participan en BENNI
+		
+		When cliente consulta sus millas benefit con su "<TARJETA>" de credito de "<MARCA>" "<TIPO>"
+		And la "<TARJETA>" se encuentra "Activa"
+ 		Then Muestra millas disponibles
+ 		But la consulta no le debe generar Error
+ 		
+    Examples:
+      |TARJETA|CREDITO|MARCA|TIPO|
+      |4772899980008083|0|01|29|
+      |377752998023494|0|02|06|
+
+    Scenario Outline: Como cliente, quiero validar la consulta de millas con tarjetas de credito bloqueada que participan en BENNI
+		
+		When cliente consulta sus millas benefit con su "<TARJETA>" de credito de "<MARCA>" "<TIPO>"
+		And la "<TARJETA>" se encuentra "TARJETA BLOQUEADA"
+ 		Then Muestra millas disponibles
+ 		But la consulta no le debe generar Error
+ 		
+    Examples:
+      |TARJETA|CREDITO|MARCA|TIPO|
+      |377753006120074|0|01|29|
+
+    Scenario Outline: Como cliente, quiero validar la consulta de millas con tarjetas de debito activa que participan en BENNI
+		
+		When cliente consulta sus millas benefit con su "<TARJETA>" de debito de "<MARCA>" "<TIPO>"
+		And la "<TARJETA>" se encuentra "Activa"
+ 		Then Muestra millas disponibles
+ 		But la consulta no le debe generar Error
+ 		
+    Examples:
+      |TARJETA|DEBITO|MARCA|TIPO|
+      |4110740000077461|0|01|29|
+      |4547770000018580|0|02|06|
+
+    Scenario Outline: Como cliente, quiero validar la consulta de millas con tarjetas de debito bloqueada que participan en BENNI
+		
+		When cliente consulta sus millas benefit con su "<TARJETA>" de debito de "<MARCA>" "<TIPO>"
+		And la "<TARJETA>" se encuentra "TARJETA BLOQUEADA"
+ 		Then Muestra millas disponibles
+ 		But la consulta no le debe generar Error
+ 		
+    Examples:
+      |TARJETA|CREDITO|MARCA|TIPO|
+      |falta|0|01|29|
+      
+      Scenario Outline: Como cliente, quiero validar la consulta de millas con tarjetas de debito o credito API NOT EXECUTED que participan en BENNI
+		
+		When cliente consulta sus millas benefit con su "<TARJETA>" de debito o credito de "<MARCA>" "<TIPO>"
+		And la "<TARJETA>" se encuentra "API NOT EXECUTED"
+ 		Then No muestra millas disponibles
+ 		But la consulta no le debe generar Error
+ 		
+    Examples:
+      |TARJETA|CREDITO|MARCA|TIPO|
+      |377753006120074|""|01|29|
+      
+  Scenario Outline: Como cliente, quiero validar la consulta de millas con tarjetas de debito o credito No Activa que participan en BENNI
+		
+		When cliente consulta sus millas benefit con su "<TARJETA>" de debito o credito de "<MARCA>" "<TIPO>"
+		And la "<TARJETA>" se encuentra "TARJETA NO ACTIVA"
+ 		Then No muestra millas disponibles
+ 		But la consulta no le debe generar Error
+ 		
+    Examples:
+      |TARJETA|CREDITO|MARCA|TIPO|
+      |5444029980014882|0|01|29|
+  
+   Scenario Outline: Como cliente, quiero validar la consulta de millas con tarjetas de debito o credito BAJA que participan en BENNI
+		
+		When cliente consulta sus millas benefit con su "<TARJETA>" de debito o credito de "<MARCA>" "<TIPO>"
+		And la "<TARJETA>" se encuentra "BAJA"
+ 		Then  No muestra millas disponibles
+ 		But la consulta no le debe generar Error
+ 		
+    Examples:
+      |TARJETA|CREDITO|MARCA|TIPO| 
+      |4222249980019969|0|01|29|
+  
