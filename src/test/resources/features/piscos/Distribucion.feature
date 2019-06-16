@@ -1,4 +1,4 @@
-Feature: Buscar pedidos disponibles
+Feature: Buscar distribuciones disponibles
 Los distruidores deben poder encontrar que pedidos estàn disponibles para enviar
 
 Scenario: Obtener distribuciones de pedidos disponibles
